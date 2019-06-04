@@ -23,13 +23,13 @@ int main(void)
 int get_height(int min, int max)
 {
     int num;
-	
+
     do
     {
        num = get_int("Height : "); 
     }
-	while (num < min || num > max);
-	
+    while (num < min || num > max);
+
     return num;
 }
 
@@ -66,8 +66,8 @@ void print_hash_bricks(int height)
                 printf("#");
             }
         }
-		
-		// Jump next line.
+
+        // Jump next line.
         printf("\n");
     }
 }
