@@ -26,14 +26,14 @@ int get_height(int min, int max)
 
     do
     {
-       num = get_int("Height : "); 
+        num = get_int("Height : "); 
     }
     while (num < min || num > max);
 
     return num;
 }
 
-// Print hash '#' bricks on terminal.
+// Print hash bricks.
 void print_hash_bricks(int height)
 {
     for (int i = 0; i < height; i++)
@@ -41,7 +41,7 @@ void print_hash_bricks(int height)
         // Print left bricks.
         for (int j = 0; j < height; j++)
         {
-            if(height - 1 - i > j)
+            if (height - 1 - i > j)
             {
                 printf(" ");
             }
@@ -57,7 +57,7 @@ void print_hash_bricks(int height)
         // Print right bricks.
         for (int k = 0; k < height; k++)
         {
-            if(i < k)
+            if (i < k)
             {
                 printf(" ");
             }
@@ -67,7 +67,7 @@ void print_hash_bricks(int height)
             }
         }
 
-        // Jump next line.
+        // Jump to next line.
         printf("\n");
     }
 }

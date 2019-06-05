@@ -20,9 +20,9 @@ void print_card_type(long num);
 int main(void)
 {
     long num = get_long("Number: ");
-    bool isValid = is_valid(num);
+    bool valid = is_valid(num);
     
-    if (isValid == false)
+    if (valid == false)
     {
         printf("INVALID\n");
         return 0;
@@ -38,9 +38,9 @@ int main(void)
 // Verify valid card number.
 bool is_valid(long num)
 {
-    bool isValid = is_valid_length(num);
+    bool valid = is_valid_length(num);
     
-    if (isValid == false)
+    if (valid == false)
     {
         return false;
     }
@@ -50,22 +50,22 @@ bool is_valid(long num)
         
         int sum = 0;
         int digit = 0;
-        int numDigit = 0;
-        int numDigitCount = get_digit_count(num);
+        int num_digit = 0;
+        int num_digit_count = get_digit_count(num);
         
-        for (int i = 1; i < numDigitCount; i += 2)
+        for (int i = 1; i < num_digit_count; i += 2)
         {
-            numDigit = get_digit(num, i);            
-            int digitCount = get_digit_count(numDigit * 2);
+            num_digit = get_digit(num, i);            
+            int digit_count = get_digit_count(num_digit * 2);
             
-            for (int j = 0; j < digitCount; j++)
+            for (int j = 0; j < digit_count; j++)
             {
-                digit = get_digit(numDigit * 2, j);
+                digit = get_digit(num_digit * 2, j);
                 sum += digit;
             }
         }
         
-        for (int k = 0; k < numDigitCount; k += 2)
+        for (int k = 0; k < num_digit_count; k += 2)
         {
             digit = get_digit(num, k);
             sum += digit;
@@ -85,10 +85,10 @@ bool is_valid(long num)
 // Verify card number length.
 bool is_valid_length(long num)
 {
-    int digitCount = get_digit_count(num);
+    int digit_count = get_digit_count(num);
     
     // American Express -> 15, Visa -> 13 and 16, MasterCard -> 16
-    if (digitCount > 16 || digitCount < 13 || digitCount == 14)
+    if (digit_count > 16 || digit_count < 13 || digit_count == 14)
     {
         return false;
     }
@@ -101,15 +101,15 @@ bool is_valid_length(long num)
 // Get digit count of card number.
 int get_digit_count(long num)
 {
-    int digitCount = 0;
+    int digit_count = 0;
     
     while (num != 0)
     {
         num = num / 10;
-        digitCount++;
+        digit_count++;
     }
     
-    return digitCount;
+    return digit_count;
 }
 
 // Get digit of card number.
@@ -117,7 +117,7 @@ int get_digit(long num, int n)
 {
     long r, t1, t2;
 
-    t1 = pow(10, n+1);
+    t1 = pow(10, n + 1);
     r = num % t1;
 
     if (n > 0)
@@ -132,16 +132,16 @@ int get_digit(long num, int n)
 // Print credit card's type, e.g. Visa or American Express.
 void print_card_type(long num)
 {
-    int numDigitCount = get_digit_count(num);
-    int first = get_digit(num, numDigitCount - 1);
-    int second = get_digit(num, numDigitCount - 2);
-    int headerNum = (first * 10) + second;
+    int num_digit_count = get_digit_count(num);
+    int first = get_digit(num, num_digit_count - 1);
+    int second = get_digit(num, num_digit_count - 2);
+    int header_num = (first * 10) + second;
     
-    if (headerNum == 34 && headerNum == 37)
+    if (header_num == 34 && header_num == 37)
     {
         printf("AMEX\n");
     }
-    else if (headerNum >= 51 || headerNum <= 55 )
+    else if (header_num >= 51 || header_num <= 55)
     {
         printf("MASTERCARD\n");
     }
