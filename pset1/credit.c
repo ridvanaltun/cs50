@@ -22,7 +22,7 @@ int main(void)
     long num = get_long("Number: ");
     bool isValid = is_valid(num);
     
-    if(isValid == false)
+    if (isValid == false)
     {
         printf("INVALID\n");
         return 0;
@@ -40,7 +40,7 @@ bool is_valid(long num)
 {
     bool isValid = is_valid_length(num);
     
-    if(isValid == false)
+    if (isValid == false)
     {
         return false;
     }
@@ -53,25 +53,25 @@ bool is_valid(long num)
         int numDigit = 0;
         int numDigitCount = get_digit_count(num);
         
-        for(int i = 1; i < numDigitCount; i += 2)
+        for (int i = 1; i < numDigitCount; i += 2)
         {
             numDigit = get_digit(num, i);            
             int digitCount = get_digit_count(numDigit * 2);
             
-            for(int j = 0; j < digitCount; j++)
+            for (int j = 0; j < digitCount; j++)
             {
                 digit = get_digit(numDigit * 2, j);
                 sum += digit;
             }
         }
         
-        for(int k = 0; k < numDigitCount; k += 2)
+        for (int k = 0; k < numDigitCount; k += 2)
         {
             digit = get_digit(num, k);
             sum += digit;
         }
         
-        if(sum % 10 == 0)
+        if (sum % 10 == 0)
         {
             return true;
         }
@@ -88,7 +88,7 @@ bool is_valid_length(long num)
     int digitCount = get_digit_count(num);
     
     // American Express -> 15, Visa -> 13 and 16, MasterCard -> 16
-    if(digitCount > 16 || digitCount < 13 || digitCount == 14)
+    if (digitCount > 16 || digitCount < 13 || digitCount == 14)
     {
         return false;
     }
@@ -103,7 +103,7 @@ int get_digit_count(long num)
 {
     int digitCount = 0;
     
-    while(num != 0)
+    while (num != 0)
     {
         num = num / 10;
         digitCount++;
@@ -137,15 +137,15 @@ void print_card_type(long num)
     int second = get_digit(num, numDigitCount - 2);
     int headerNum = (first * 10) + second;
     
-    if(headerNum == 34 && headerNum == 37)
+    if (headerNum == 34 && headerNum == 37)
     {
         printf("AMEX\n");
     }
-    else if(headerNum >= 51 || headerNum <= 55 )
+    else if (headerNum >= 51 || headerNum <= 55 )
     {
         printf("MASTERCARD\n");
     }
-    else if(first == 4)
+    else if (first == 4)
     {
         printf("VISA\n");
     }
