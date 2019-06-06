@@ -8,63 +8,39 @@
  
 #include <cs50.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
 // Defines
-#define filename argv[0]
-#define key argv[1]
-#define offset 48
+#define FILENAME argv[0]
+#define KEY argv[1]
+#define OFFSET 48
 
 // Prototypes
 int strtoint(string text);
 bool isnum(string text);
+string crypter(string plain, string key);
 
 int main(int argc, string argv[])
 {
-    bool iskeynum = false;
+    bool iskeyvalid = false;
     
     if (argc == 2)
     {
-        iskeynum = isnum(key);  
+        iskeyvalid = isnum(KEY);  
     }
 
-    if (argc == 2 && iskeynum == true)
+    if (iskeyvalid == true)
     {
-        int num = strtoint(key);
         string plain = get_string("plaintext:  ");
-        char cipher[strlen(plain)];
-        
-        // Crypter.
-        for (int i = 0; i < strlen(plain); i++)
-        {
-            // If char is not space or comma.
-            if (plain[i] != 32 && plain[i] != 44)
-            {
-                int place = plain[i] + num;
-                
-                // Map characters in ASCII.
-                if ((place < 123 && place > 96) || (place < 91))
-                {
-                    cipher[i] = plain[i] + num;   
-                }
-                else
-                {
-                    cipher[i] = plain[i] - num;   
-                } 
-            }
-            else
-            {
-                cipher[i] = plain[i];
-            }  
-        }
-        
+        string cipher = crypter(plain, KEY);
         printf("ciphertext: %s\n", cipher);
         return 0;
     }
     else
     {
-        printf("Usage: %s key\n", filename);
+        printf("Usage: %s key\n", FILENAME);
         return 1;
     }
 }
@@ -83,7 +59,7 @@ int strtoint(string text)
         {
             mul *= 10;
         }
-        sum += (text[i] - offset) * mul;
+        sum += (text[i] - OFFSET) * mul;
     }
     
     return sum;
@@ -101,4 +77,37 @@ bool isnum(string text)
     }
     
     return true;
+}
+
+// Return crypted text.
+string crypter(string plain, string key)
+{
+    int num = strtoint(key);
+    string cipher = (char *)malloc(strlen(plain) * sizeof(char *));
+        
+    for (int i = 0; i < strlen(plain); i++)
+    {
+        
+        // If char is not space or comma.
+        if (plain[i] != 32 && plain[i] != 44)
+        {
+            int c = plain[i] + num;
+            
+            // Map characters in ASCII.
+            if ((c < 123 && c > 96) || (c < 91))
+            {
+                cipher[i] = c;  
+            }
+            else
+            {
+                cipher[i] = plain[i] - num;
+            }
+        }
+        else
+        {
+            cipher[i] = plain[i];
+        } 
+    }
+    
+    return cipher;
 }
