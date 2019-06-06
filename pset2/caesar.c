@@ -45,7 +45,7 @@ int main(int argc, string argv[])
     }
 }
 
-// Convert string to int.
+// Converts string to int.
 int strtoint(string text)
 {
     int sum = 0;
@@ -65,7 +65,7 @@ int strtoint(string text)
     return sum;
 }
 
-// Return true if string value is a number.
+// Returns true if string value is a number.
 bool isnum(string text)
 {
     for (int i = 0; i < strlen(text); i++)
@@ -79,7 +79,7 @@ bool isnum(string text)
     return true;
 }
 
-// Return crypted text.
+// Returns crypted text.
 string crypter(string plain, string key)
 {
     int num = strtoint(key);
