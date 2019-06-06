@@ -65,7 +65,7 @@ int main(int argc, string argv[])
     else
     {
         printf("Usage: %s key\n", filename);
-        return 0;
+        return 1;
     }
 }
 
