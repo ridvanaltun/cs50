@@ -38,6 +38,8 @@ int main(int argc, char *argv[])
         char *plain = get_string("plaintext:  ");
         char *cipher = crypter(plain, KEYWORD);
         printf("ciphertext: %s\n", cipher);
+        
+        free(cipher);
         return 0;
     }
     else
@@ -64,7 +66,7 @@ bool isword(char *word)
 // Returns crypted text.
 char *crypter(char *plain, char *keyword)
 {
-    char *cipher = (char *)malloc(strlen(plain) * sizeof(char *));
+    char *cipher = malloc((strlen(plain) + 1) * sizeof(char));
     char *keys = createkeys(keyword);
     int counter = 0, offset = 0;
     
@@ -96,14 +98,15 @@ char *crypter(char *plain, char *keyword)
             counter++;
         }
     }
-        
+    
+    free(keys);
     return cipher;      
 }
 
 // Returns keys as a single string.
 char *createkeys(char *keyword)
 {
-    char *keys = (char *)malloc(strlen(keyword) * sizeof(char *));
+    char *keys = malloc((strlen(keyword) + 1) * sizeof(char));
     
     for (int i = 0, n = strlen(keyword); i < n; i++)
     {

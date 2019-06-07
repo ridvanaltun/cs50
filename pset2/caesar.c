@@ -36,6 +36,8 @@ int main(int argc, char *argv[])
         char *plain = get_string("plaintext:  ");
         char *cipher = crypter(plain, KEY);
         printf("ciphertext: %s\n", cipher);
+        
+        free(cipher);
         return 0;
     }
     else
@@ -82,7 +84,7 @@ bool isnum(char *text)
 char *crypter(char *plain, char *key)
 {
     int num = strtoint(key);
-    char *cipher = (char *)malloc(strlen(plain) * sizeof(char *));
+    char *cipher = malloc((strlen(plain) + 1) * sizeof(char));
         
     for (int i = 0, n = strlen(plain); i < n; i++)
     {
