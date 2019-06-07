@@ -22,7 +22,7 @@ int main(void)
     long num = get_long("Number: ");
     bool valid = is_valid(num);
     
-    if (valid == false)
+    if (!valid)
     {
         printf("INVALID\n");
         return 0;
@@ -40,7 +40,7 @@ bool is_valid(long num)
 {
     bool valid = is_valid_len(num);
     
-    if (valid == false)
+    if (!valid)
     {
         return false;
     }
@@ -137,11 +137,11 @@ void print_card_type(long num)
     int second = get_digit(num, num_digit_count - 2);
     int header_num = (first * 10) + second;
     
-    if (header_num == 34 && header_num == 37)
+    if (header_num == 34 || header_num == 37)
     {
         printf("AMEX\n");
     }
-    else if (header_num >= 51 || header_num <= 55)
+    else if (header_num >= 51 && header_num <= 55)
     {
         printf("MASTERCARD\n");
     }

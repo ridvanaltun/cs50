@@ -18,11 +18,11 @@
 #define OFFSET 48
 
 // Prototypes
-int strtoint(string text);
-bool isnum(string text);
-string crypter(string plain, string key);
+int strtoint(char *text);
+bool isnum(char *text);
+char *crypter(char *plain, char *key);
 
-int main(int argc, string argv[])
+int main(int argc, char *argv[])
 {
     bool iskeyvalid = false;
     
@@ -31,10 +31,10 @@ int main(int argc, string argv[])
         iskeyvalid = isnum(KEY);  
     }
 
-    if (iskeyvalid == true)
+    if (iskeyvalid)
     {
-        string plain = get_string("plaintext:  ");
-        string cipher = crypter(plain, KEY);
+        char *plain = get_string("plaintext:  ");
+        char *cipher = crypter(plain, KEY);
         printf("ciphertext: %s\n", cipher);
         return 0;
     }
@@ -46,7 +46,7 @@ int main(int argc, string argv[])
 }
 
 // Converts string to int.
-int strtoint(string text)
+int strtoint(char *text)
 {
     int sum = 0, mul = 1;
     
@@ -65,7 +65,7 @@ int strtoint(string text)
 }
 
 // Returns true if string value is a number.
-bool isnum(string text)
+bool isnum(char *text)
 {
     for (int i = 0, n = strlen(text); i < n; i++)
     {
@@ -79,10 +79,10 @@ bool isnum(string text)
 }
 
 // Returns crypted text.
-string crypter(string plain, string key)
+char *crypter(char *plain, char *key)
 {
     int num = strtoint(key);
-    string cipher = (char *)malloc(strlen(plain) * sizeof(char *));
+    char *cipher = (char *)malloc(strlen(plain) * sizeof(char *));
         
     for (int i = 0, n = strlen(plain); i < n; i++)
     {

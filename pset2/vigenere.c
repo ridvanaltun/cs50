@@ -17,14 +17,14 @@
 #define KEYWORD argv[1]
 
 // Prototypes
-bool isword(string word);
-string crypter(string plain, string keyword);
-string createkeys(string keyword);
+bool isword(char *word);
+char *crypter(char *plain, char *keyword);
+char *createkeys(char *keyword);
 
 const char *BIG_C = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const char *LITTLE_C = "abcdefghijklmnopqrstuvwxyz";
 
-int main(int argc, string argv[])
+int main(int argc, char *argv[])
 {
     bool iskeywordvalid = false;
     
@@ -33,10 +33,10 @@ int main(int argc, string argv[])
         iskeywordvalid = isword(KEYWORD);
     }
     
-    if (iskeywordvalid == true)
+    if (iskeywordvalid)
     {
-        string plain = get_string("plaintext:  ");
-        string cipher = crypter(plain, KEYWORD);
+        char *plain = get_string("plaintext:  ");
+        char *cipher = crypter(plain, KEYWORD);
         printf("ciphertext: %s\n", cipher);
         return 0;
     }
@@ -48,7 +48,7 @@ int main(int argc, string argv[])
 }
 
 // Returns true if text created using only alphabet.
-bool isword(string word)
+bool isword(char *word)
 {
     for (int i = 0, n = strlen(word); i < n; i++)
     {
@@ -62,10 +62,10 @@ bool isword(string word)
 }
 
 // Returns crypted text.
-string crypter(string plain, string keyword)
+char *crypter(char *plain, char *keyword)
 {
-    string cipher = (char *)malloc(strlen(plain) * sizeof(char *));
-    string keys = createkeys(keyword);
+    char *cipher = (char *)malloc(strlen(plain) * sizeof(char *));
+    char *keys = createkeys(keyword);
     int counter = 0, offset = 0;
     
     for (int i = 0, n = strlen(plain); i < n; i++)
@@ -101,9 +101,9 @@ string crypter(string plain, string keyword)
 }
 
 // Returns keys as a single string.
-string createkeys(string keyword)
+char *createkeys(char *keyword)
 {
-    string keys = (char *)malloc(strlen(keyword) * sizeof(char *));
+    char *keys = (char *)malloc(strlen(keyword) * sizeof(char *));
     
     for (int i = 0, n = strlen(keyword); i < n; i++)
     {
