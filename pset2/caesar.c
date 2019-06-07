@@ -48,14 +48,13 @@ int main(int argc, string argv[])
 // Converts string to int.
 int strtoint(string text)
 {
-    int sum = 0;
-    int mul = 1;
+    int sum = 0, mul = 1;
     
-    for (int i = 0; i < strlen(text); i++)
+    for (int i = 0, n = strlen(text); i < n; i++)
     {
         mul = 1;  
         
-        for (int j = i + 1; j < strlen(text); j++)
+        for (int j = i + 1, m = strlen(text); j < m; j++)
         {
             mul *= 10;
         }
@@ -68,7 +67,7 @@ int strtoint(string text)
 // Returns true if string value is a number.
 bool isnum(string text)
 {
-    for (int i = 0; i < strlen(text); i++)
+    for (int i = 0, n = strlen(text); i < n; i++)
     {
         if (isdigit(text[i]) == 0)
         {
@@ -85,7 +84,7 @@ string crypter(string plain, string key)
     int num = strtoint(key);
     string cipher = (char *)malloc(strlen(plain) * sizeof(char *));
         
-    for (int i = 0; i < strlen(plain); i++)
+    for (int i = 0, n = strlen(plain); i < n; i++)
     {
         
         // If char is not space or comma.

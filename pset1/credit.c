@@ -12,7 +12,7 @@
 
 // Prototypes
 bool is_valid(long num);
-bool is_valid_length(long num);
+bool is_valid_len(long num);
 int get_digit_count(long num);
 int get_digit(long num, int n);
 void print_card_type(long num);
@@ -38,7 +38,7 @@ int main(void)
 // Verify valid card number.
 bool is_valid(long num)
 {
-    bool valid = is_valid_length(num);
+    bool valid = is_valid_len(num);
     
     if (valid == false)
     {
@@ -83,7 +83,7 @@ bool is_valid(long num)
 }
 
 // Verify card number length.
-bool is_valid_length(long num)
+bool is_valid_len(long num)
 {
     int digit_count = get_digit_count(num);
     

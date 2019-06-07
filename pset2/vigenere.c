@@ -50,7 +50,7 @@ int main(int argc, string argv[])
 // Returns true if text created using only alphabet.
 bool isword(string word)
 {
-    for (int i = 0; i < strlen(word); i++)
+    for (int i = 0, n = strlen(word); i < n; i++)
     {
         if (isdigit(word[i]) > 0)
         {
@@ -68,7 +68,7 @@ string crypter(string plain, string keyword)
     string keys = createkeys(keyword);
     int counter = 0, offset = 0;
     
-    for (int i = 0; i < strlen(plain); i++)
+    for (int i = 0, n = strlen(plain); i < n; i++)
     {
         // If character is space.
         if (plain[i] == 32)
@@ -86,7 +86,7 @@ string crypter(string plain, string keyword)
             
             if ((offset < 123 && offset > 96) || (offset < 91 && offset > 64))
             {
-                cipher[i] = plain[i] + keys[counter];
+                cipher[i] = offset;
             }
             else
             {
@@ -105,7 +105,7 @@ string createkeys(string keyword)
 {
     string keys = (char *)malloc(strlen(keyword) * sizeof(char *));
     
-    for (int i = 0; i < strlen(keyword); i++)
+    for (int i = 0, n = strlen(keyword); i < n; i++)
     {
         if (isupper(keyword[i]) > 0)
         {

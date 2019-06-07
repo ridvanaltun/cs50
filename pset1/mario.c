@@ -11,12 +11,12 @@
 
 // Prototypes
 int get_height(int min, int max);
-void print_hash_bricks(int height);
+void print_bricks(int height);
 
 int main(void)
 {
     int height = get_height(1, 8);
-    print_hash_bricks(height);
+    print_bricks(height);
 }
 
 // Get value from the user until get an appropriate value.
@@ -34,7 +34,7 @@ int get_height(int min, int max)
 }
 
 // Print hash bricks.
-void print_hash_bricks(int height)
+void print_bricks(int height)
 {
     for (int i = 0; i < height; i++)
     {
