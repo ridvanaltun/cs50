@@ -51,7 +51,7 @@ The value "one" means read once. This way, we have more control over the program
 
 ## What value does `copy.c` assign to `padding` if `bi.biWidth` is `3`?
 
-0
+3
 
 ## What does `fseek` do?
 
