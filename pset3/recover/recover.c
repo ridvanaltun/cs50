@@ -118,15 +118,16 @@ int recover(char *filename)
 // Create a name for a file. Returns e.g. 025.jpg, 009.jpg so on.
 char *createname(int num)
 {   
-    // 3 + 1 bytes
-    char *name = malloc(sizeof(char) * 3 + 1);
+    // 7 + 1 bytes -> ###.jpg + /0
+    char *name = malloc(sizeof(char) * 7 + 1);
     
     int one = getdigit(num, 1);
     int two = getdigit(num, 2);
     int three = getdigit(num, 3);
     
     sprintf(name, "%i%i%i.jpg", three, two, one);
-        
+    
+    free(name);
     return name;
 }
 
